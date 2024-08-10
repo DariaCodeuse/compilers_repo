@@ -7,7 +7,13 @@ import re
 tokens = [
     ('NUMERO', r'\d+'),                     # Numero entero
     ('IDENTIFICADOR', r'[A-Z,a-z]\w*'),     # Identificador
-    ('SUMA', r'\+'),                        # Operador
+    ('SUMA', r'\+'),                        # Operador suma
+    ('RESTA', r'-'),                        # Operador rsta
+    ('MULTI', r'\*'),                       # Operador multipliacacion
+    ('DIVI', r'/'),                         # Operador division
+    ('ESPACIO', r'\s+'),                    # Espacios en blanco
+    ('IPAREN', r'\('),                      # Parentesis izquierdo
+    ('DPAREN', r'\)'),                      # Parentesis derecho
 ]
 
 # Token expresiones regulares patrones
