@@ -27,23 +27,21 @@ def tokenize(code):
   position = 0
   tokens = []
 
-while positon < len(code):
+  while position < len(code):
     match = get_token(code, position)
     if not match:
-      raise RuntimeError(f´Error de Analisis {position}´)
-    
+      raise RuntimeError(f'Error de Analisis en posicion {position}')
+        
     for name, value in match.groupdict().items():
       if value:
         if name != 'ESPACIO':
           tokens.append((name, value))
-        break
-    position = match.end()
+          break
+        position = match.end()
 
-    return tokens
+    return tokens  # Mover el return fuera del bucle while
 
-    code = " "
-    x = 2 + 4 * (2 - 8)
-    " "
-    tokens = tokenize(code)
-    for token in tokens:
-      print(token)
+code = "x = 2 + 4 * (2 - 8)"
+tokens = tokenize(code)
+for token in tokens:
+    print(token)
