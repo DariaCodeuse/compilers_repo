@@ -4,20 +4,21 @@
 import re
 
 # 1. Definicion de tokens
-tokens = [
-    ('NUMERO', r'\d+'),                     # Numero entero
-    ('IDENTIFICADOR', r'[A-Z,a-z]\w*'),     # Identificador
-    ('SUMA', r'\+'),                        # Operador suma
-    ('RESTA', r'-'),                        # Operador rsta
-    ('MULTI', r'\*'),                       # Operador multipliacacion
-    ('DIVI', r'/'),                         # Operador division
-    ('ESPACIO', r'\s+'),                    # Espacios en blanco
-    ('IPAREN', r'\('),                      # Parentesis izquierdo
-    ('DPAREN', r'\)'),                      # Parentesis derecho
+token_patterns = [
+    ('NUMERO', r'\d+'),                      # Número entero
+    ('IDENTIFICADOR', r'[A-Za-z]\w*'),       # Identificador
+    ('SUMA', r'\+'),                         # Operador de suma
+    ('RESTA', r'-'),                         # Operador de resta
+    ('MULTIPLICACION', r'\*'),               # Operador de multiplicación
+    ('DIVISION', r'/'),                      # Operador de división
+    ('PARENTESIS_IZQ', r'\('),               # Paréntesis izquierdo
+    ('PARENTESIS_DER', r'\)'),               # Paréntesis derecho
+    ('ESPACIO', r'\s+'),                     # Espacios
+    ('SIMBOLO', r'.'),                       # Otros caracteres
 ]
 
 # Token expresiones regulares patrones
-token-regex = '|'.join(f'(?P<{name}>{pattem})' for name, pattem in tokens)
+token_regex = '|'.join(f'(?P<{name}>{pattern})' for name, pattern in token_patterns)
 get_token = re.compile(token_regex).match
 
 # 2. Funcion de analisis lexico
@@ -36,12 +37,14 @@ def tokenize(code):
       if value:
         if name != 'ESPACIO':
           tokens.append((name, value))
-          break
-        position = match.end()
+        break
+    position = match.end()
 
-    return tokens  # Mover el return fuera del bucle while
+  return tokens  # Mover el return fuera del bucle while
+
+
 
 code = "x = 2 + 4 * (2 - 8)"
 tokens = tokenize(code)
 for token in tokens:
-    print(token)
+  print(token)
