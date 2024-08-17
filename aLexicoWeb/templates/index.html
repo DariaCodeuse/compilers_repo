@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div class="container-2">
+      {% if tokens %}
+        {% for caracter, simbolo in tokens %}
+          <p>{ simbolo}</p>
+          {% endfor %}
+      {% else %}
+      <p>No se encontraron Tokens</p>
+      {% endif %}
+    </div>
+    <div class="container-table">
+      <table>
+        {% if tokens %}
+          <tr>
+            <th>caracteres</th>
+            <th>simbolos</th>
+          </tr>
+          {% for caracter, simbolo in tokens %}
+          <tr>
+            <td>{{caracter}}</td>
+            <td>{{simbolo}}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+        <tr><td colspan="2">No se encontro tokens</td></tr>
+        {% endif %}
+      </table>
+
+    </div>
+  </div>
+</body>
+</html>
