@@ -47,4 +47,4 @@ def tokenize(code):
 code = "x = 2 + 4 * (2 - 8)"
 tokens = tokenize(code)
 for token in tokens:
-  listprint(token)
+  print(token)
