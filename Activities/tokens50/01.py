@@ -6,7 +6,6 @@ import re
 # 1. Definicion de tokens
 token_patterns = [
     ('NUMERO', r'\d+'),                      # Número entero
-    ('IDENTIFICADOR', r'[A-Za-z]\w*'),       # Identificador
     ('SUMA', r'\+'),                         # Operador de suma
     ('RESTA', r'-'),                         # Operador de resta
     ('MULTIPLICACION', r'\*'),               # Operador de multiplicación
@@ -15,6 +14,7 @@ token_patterns = [
     ('PARENTESIS_DER', r'\)'),               # Paréntesis derecho
     ('ESPACIO', r'\s+'),                     # Espacios
     ('SIMBOLO', r'.'),                       # Otros caracteres
+    ('IDENTIFICADOR', r'[A-Za-z]\w*'),       # Identificador
 ]
 
 # Token expresiones regulares patrones

@@ -14,8 +14,7 @@ token_patterns = [
     ('ESPACIO', r'\s+'),                     # Espacios
     ('IGUAL', r'\='),
     ('PRINT', r'print'),
-    
-    ('IDENTIFICADOR', r'[a-zA-Z_][a-zA-Z_0-9]*'),  # Identificadores
+  
     ('PUNTO', r'\.'),                             # Punto
     ('COMA', r','),                               # Coma
     ('PUNTO_Y_COMA', r';'),                       # Punto y coma
@@ -26,6 +25,7 @@ token_patterns = [
     ('CORCHETE_DER', r'\]'),                      # Corchete derecho
     ('LLAVE_IZQ', r'\{'),                         # Llave izquierda
     ('LLAVE_DER', r'\}'),                         # Llave derecha
+
     ('MENOR', r'<'),                              # Operador menor que
     ('MAYOR', r'>'),                              # Operador mayor que
     ('MENOR_IGUAL', r'<='),                       # Menor o igual que
@@ -36,6 +36,7 @@ token_patterns = [
     ('AND', r'&&'),                               # Operador AND
     ('OR', r'\|\|'),                              # Operador OR
     ('NOT', r'!'),                                # Operador NOT
+
     ('MODULO', r'%'),                             # Operador módulo
     ('ASIGNACION_SUMA', r'\+='),                  # Asignación con suma
     ('ASIGNACION_RESTA', r'-='),                  # Asignación con resta
@@ -46,6 +47,7 @@ token_patterns = [
     ('CONDICIONAL_ELSE', r'\belse\b'),            # Palabra clave else
     ('CICLO_FOR', r'\bfor\b'),                    # Palabra clave for
     ('CICLO_WHILE', r'\bwhile\b'),                # Palabra clave while
+
     ('CICLO_DO', r'\bdo\b'),                      # Palabra clave do
     ('SWITCH', r'\bswitch\b'),                    # Palabra clave switch
     ('CASE', r'\bcase\b'),                        # Palabra clave case
@@ -56,11 +58,17 @@ token_patterns = [
     ('CLASS', r'\bclass\b'),                      # Palabra clave class
     ('CONSTRUCTOR', r'\bconstructor\b'),          # Palabra clave constructor
     ('NUEVO_OBJETO', r'\bnew\b'),                 # Palabra clave new
+
     ('THIS', r'\bthis\b'),                        # Palabra clave this
     ('STATIC', r'\bstatic\b'),                    # Palabra clave static
     ('VOID', r'\bvoid\b'),                        # Palabra clave void
     ('NULL', r'\bnull\b'),                        # Valor null
     ('BOOLEANO', r'\btrue\b|\bfalse\b'),          # Booleanos true/false
+    ('TIPO_INT', r'\bint\b'),                     # Tipo de dato entero
+    ('TIPO_FLOAT', r'\bfloat\b'),                 # Tipo de dato flotante
+    ('TIPO_STRING', r'\bstring\b'),               # Tipo de dato cadena
+    ('TIPO_DOUBLE', r'\bdouble\b'),               # Tipo de dato doble precisión
+    ('IDENTIFICADOR', r'[a-zA-Z_][a-zA-Z_0-9]*'), # Identificadores
 ]
 
 # Token expresiones regulares patrones
