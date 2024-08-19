@@ -1,5 +1,4 @@
-# Mi primer Analizador lexico que solo reconoce:
-# Numeros enteros, identificador, operadores
+# Realiza un analizador Léxico en python 50 tokens
 
 import re
 
