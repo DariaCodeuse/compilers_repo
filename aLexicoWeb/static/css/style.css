@@ -1,0 +1,60 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-2 {
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Table Styles */
+.container-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.container-table th, .container-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.container-table th {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+.container-table td {
+  background-color: #f9f9f9;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+      padding: 10px;
+  }
+
+  .container-table table, .container-table th, .container-table td {
+      font-size: 14px;
+      padding: 8px;
+  }
+}

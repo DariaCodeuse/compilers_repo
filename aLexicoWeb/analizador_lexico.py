@@ -1,5 +1,6 @@
 # \aLexicoWeb\.venv\Scripts\
 #.\activate
+# afbff5
 
 import ply.lex as lex
 from flask import Flask, render_template, request
