@@ -1,5 +1,4 @@
-# \aLexicoWeb\.venv\Scripts\
-#.\activate
+# .\.venv\Scripts\activate
 # afbff5
 
 import ply.lex as lex
@@ -40,7 +39,7 @@ def index():
              else "Parentesis de cierre", token.value)
             for token in lexer
         ]
-        return render_template('Home.html', tokens=result_lexema)
+        return render_template('index.html', tokens=result_lexema)
     return render_template('index.html', tokens=None)
 
 if __name__ == "__main__":

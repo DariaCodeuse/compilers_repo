@@ -8,32 +8,48 @@
 </head>
 <body>
   <div class="container">
+    <h2>Análisis Léxico</h2>
+
+    <!-- Formulario para ingresar el código -->
+
+    <form method="POST">
+      <div class="input-container">
+        <textarea name="code" placeholder="Inserta tu código aquí..."></textarea>
+      </div>
+      <button type="submit">Analizar</button>
+    </form>
+
     <div class="container-2">
-      {% if tokens %}
-        {% for caracter, simbolo in tokens %}
-          <p>{ simbolo}</p>
-          {% endfor %}
-      {% else %}
-      <p>No se encontraron Tokens</p>
-      {% endif %}
-    </div>
-    <div class="container-table">
-      <table>
+      <div class="box">
         {% if tokens %}
-          <tr>
-            <th>caracteres</th>
-            <th>simbolos</th>
-          </tr>
-          {% for caracter, simbolo in tokens %}
-          <tr>
-            <td>{{caracter}}</td>
-            <td>{{simbolo}}</td>
-          </tr>
-          {% endfor %}
+        {% for caracter, simbolo in tokens %}
+          <p>{{ simbolo }}</p>
+        {% endfor %}
         {% else %}
-        <tr><td colspan="2">No se encontro tokens</td></tr>
+          <p>No se encontraron Tokens</p>
         {% endif %}
-      </table>
+      </div>
+
+      <div class="box">
+        <div class="container-table">
+          <table>
+            {% if tokens %}
+              <tr>
+                <th>Caracteres</th>
+                <th>Simbolos</th>
+              </tr>
+              {% for caracter, simbolo in tokens %}
+              <tr>
+                <td>{{caracter}}</td>
+                <td>{{simbolo}}</td>
+              </tr>
+              {% endfor %}
+            {% else %}
+            <tr><td colspan="2">No se encontro tokens</td></tr>
+            {% endif %}
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </body>
