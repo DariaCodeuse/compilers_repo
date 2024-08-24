@@ -9,15 +9,21 @@ app = Flask(__name__)
 
 reserved = {
     'for': 'FOR',
-    'while': 'WHILE'
+    'do': 'DO',
+    'while': 'WHILE',
+    'if': 'IF',
+    'else': 'ELSE',
 }
 
 tokens = ['PABIERTO', 'PCERRADO'] + list(reserved.values())
 
 t_FOR = r'for'
+t_DO = r'do'
 t_WHILE = r'while'
-t_ignore = ' \t\n\r'
+t_IF = r'if'
+t_ELSE = r'else'
 
+t_ignore = ' \t\n\r'
 t_PABIERTO = r'\('
 t_PCERRADO = r'\)'
 

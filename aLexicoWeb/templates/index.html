@@ -7,20 +7,19 @@
   <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h2>Análisis Léxico</h2>
+  <div class="main-container">
+    <h2 class="title">Análisis Léxico</h2>
 
     <!-- Formulario para ingresar el código -->
-
     <form method="POST">
       <div class="input-container">
-        <textarea name="code" placeholder="Inserta tu código aquí..."></textarea>
+        <textarea name="code" class="code-input" placeholder="Inserta tu código aquí..."></textarea>
       </div>
-      <button type="submit">Analizar</button>
+      <button type="submit" class="analyze-button">Analizar</button>
     </form>
 
-    <div class="container-2">
-      <div class="box">
+    <div class="results-container">
+      <div class="tokens-box">
         {% if tokens %}
         {% for caracter, simbolo in tokens %}
           <p>{{ simbolo }}</p>
@@ -30,9 +29,9 @@
         {% endif %}
       </div>
 
-      <div class="box">
+      <div class="table-box">
         <div class="container-table">
-          <table>
+          <table class="results-table">
             {% if tokens %}
               <tr>
                 <th>Caracteres</th>
@@ -45,7 +44,7 @@
               </tr>
               {% endfor %}
             {% else %}
-            <tr><td colspan="2">No se encontro tokens</td></tr>
+            <tr><td colspan="2">No se encontraron tokens</td></tr>
             {% endif %}
           </table>
         </div>
