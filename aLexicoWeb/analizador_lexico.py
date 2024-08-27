@@ -1,27 +1,32 @@
 # .\.venv\Scripts\activate
-# afbff5
 
 import ply.lex as lex
+import json
 from flask import Flask, render_template, request
 
 # Instancia de App en Flask
 app = Flask(__name__)
 
-reserved = {
-    'for': 'FOR',
-    'do': 'DO',
-    'while': 'WHILE',
-    'if': 'IF',
-    'else': 'ELSE',
-}
+# Cargar el JSON
+with open('tokens.json') as f:
+    data = json.load(f)
 
-tokens = ['PABIERTO', 'PCERRADO'] + list(reserved.values())
+reserved = data['reserved']
+print(reserved)
 
-t_FOR = r'for'
+tokens = list(data.keys())
+print(tokens)
+
+
+# Reglas para los tokens
+t_FOR = r"for"
 t_DO = r'do'
 t_WHILE = r'while'
 t_IF = r'if'
 t_ELSE = r'else'
+t_STATIC = r'static'
+t_VOID = r'void"'
+t_PUNTO = r'd+.d+\;?'
 
 t_ignore = ' \t\n\r'
 t_PABIERTO = r'\('
@@ -41,10 +46,12 @@ def index():
 
         result_lexema = [
             (f"Reservada {token.type.capitalize()}" if token.type in reserved.values()
-             else "Parentesis de apertura" if token.type == "PABIERTO" 
-             else "Parentesis de cierre", token.value)
+            else "Parentesis de apertura" if token.type == "PABIERTO"
+            else "Parentesis de cierre" if token.type == "PCERRADO"
+            else f"Token desconocido ({token.type})", token.value)
             for token in lexer
         ]
+
         return render_template('index.html', tokens=result_lexema)
     return render_template('index.html', tokens=None)
 
