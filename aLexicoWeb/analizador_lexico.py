@@ -1,4 +1,4 @@
-import ply.lex as lex
+import ply.yacc as yacc
 import json
 from flask import Flask, render_template, request
 
@@ -87,7 +87,7 @@ def index():
                     descripcion = category
                     break
             
-            result_lexema.append((descripcion.upper(), token.value, token.lineno))
+            result_lexema.append((descripcion.upper()          , token.value, token.lineno))
         
         return render_template('index.html', tokens=result_lexema)
     return render_template('index.html', tokens=None)

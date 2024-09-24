@@ -9,9 +9,10 @@ body {
   background: linear-gradient(135deg, #f3e5f5, #e1bee7, #c5cae9);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center; 
   height: 100vh;
   overflow-y: auto;
+  padding: 20px; 
 }
 
 .main-container {
