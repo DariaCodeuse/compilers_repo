@@ -1,27 +1,110 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
+/* Reseteo básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Estilos del cuerpo */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9; /* Fondo claro para un contraste suave */
+  color: #333; /* Texto oscuro para una buena legibilidad */
+  line-height: 1.6; /* Mejora la legibilidad */
+}
+
+/* Encabezado */
+header {
+  background-color: #ffcccb; /* Rosa claro */
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+
+/* Títulos */
 h1 {
-  color: #333;
+  font-size: 2.5em;
+  color: #d10032; /* Rosa más oscuro para contraste */
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
 }
 
 textarea {
-  width: 100%;
-  margin-bottom: 20px;
+  width: 80%;
+  padding: 10px;
+  border: 2px solid #ffb6c1; /* Rosa más suave */
+  border-radius: 5px;
+  font-size: 1em;
+  resize: vertical; /* Permite el cambio de tamaño verticalmente */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
+input[type="submit"] {
+  background-color: #d10032; /* Botón rosa oscuro */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease; /* Transición suave para hover */
+}
+
+input[type="submit"]:hover {
+  background-color: #b00029; /* Color más oscuro al pasar el mouse */
+}
+
+/* Secciones */
+section {
+  background-color: #ffffff; /* Fondo blanco para el contenido */
+  border: 1px solid #ffb6c1; /* Borde rosa suave */
+  border-radius: 5px;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Tablas */
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 10px;
 }
 
 th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  padding: 10px;
+  border: 1px solid #ffb6c1; /* Borde rosa suave */
+  text-align: left;
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: #ffcccb; /* Rosa claro */
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Fila alternada para mejor legibilidad */
+}
+
+/* Enlaces */
+a {
+  color: #d10032; /* Rosa oscuro */
+  text-decoration: none; /* Sin subrayado */
+}
+
+a:hover {
+  text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+/* Pie de página */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #ffcccb; /* Rosa claro */
+  margin-top: 20px;
 }
