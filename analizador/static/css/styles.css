@@ -206,17 +206,130 @@ input:checked + .slider:before {
 }
 
 /* 2. FORM */
-form {
-  
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto;
+  width: 80%;
+  max-width: 800px;
 }
 
-/* 3. RESULTS */
+textarea::placeholder {
+  color: var(--secondary-color); /* Cambia este color por el que prefieras */
+  opacity: 1; /* Asegúrate de que la opacidad sea 1 para que no se vea más claro */
+}
+
+.code-input {
+  width: 100%;
+  height: 200px;
+  padding: 15px;
+  background-color: var(--secondary-bg);
+  border: 2px solid var(--secondary-border);
+  color: var(--accent-bg);
+  border-radius: 8px;
+  font-family: var(--font-family-main);
+  transition: border-color 0.3s ease;
+}
+
+.code-input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+/* BUTTONS BOX*/
+.buttons-box {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+  width: 350px;
+  min-width: 200px;
+  gap: 15px;
+}
+.analyze-button {
+  padding: 15px 20px;
+  border: none;
+  outline: none;
+  background-color: var(--body-color);
+  color: var(--body-bg);
+  border-radius: 7px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+}
+
+.analyze-button:hover {
+  transform: translateY(-3px);
+}
+
+
+/* Contenedor de resultados */
 .results-container {
-  
+  width: 80%;
+  max-width: 800px;
+  margin: 1rem auto;
 }
 
-/* 4. FOOTER */
+.table-box {
+  background-color: var(--secondary-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--accent-color);
+  overflow-x: auto;
+}
+
+.table-box h3 {
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results-table th,
+.results-table td {
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--body-bg);
+}
+
+.results-table th {
+  background-color: var(--body-color);
+  color: var(--secondary-bg);
+}
+
+.results-table tr:nth-child(even) {
+  background-color: var(--accent-color);
+}
+
+/* Caja de errores */
+.error-boxecita {
+  background-color: #fce4e4;
+  padding: 8px;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.error-boxecita ul {
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.error-boxecita p {
+  margin: 0;
+}
+
+/* Footer */
 footer {
-  
+  height: 60px; 
+  background-color: var(--secondary-bg);
+  color: var(--body-color);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto
 }
-
