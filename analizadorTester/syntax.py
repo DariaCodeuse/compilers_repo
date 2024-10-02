@@ -23,7 +23,10 @@ def p_body(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input!")
+    if p:
+        errors.append(f"Error de sintaxis en el token '{p.value}', línea {p.lineno}")
+    else:
+        errors.append("Error de sintaxis al final del archivo")
 
 # Build the parser
 parser = yacc.yacc(debug=False)
@@ -31,7 +34,7 @@ parser = yacc.yacc(debug=False)
 
 def parser_for_statement(code):
     global errors
-    errors = []
+    errors.clear()  # Limpiar errores previos
     lexer.lineno = 1
-    result = parser.parse(code, lexer=lexer)
+    parser.parse(code, lexer=lexer)
     return errors
