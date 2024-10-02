@@ -15,14 +15,26 @@
 :root {
   --body-bg: #f7f8f8;
   --body-color: #25262c;
+  --secondary-bg: #eeeef0;
+  --secondary-color: #737984;
+  --secondary-border: #b7bac2;
+  --accent-bg: #676c79;
+  --accent-color: #bebfc4;
+  --logo-github: rgba(156, 156, 156, 0.2);
   --font-family-main: 'Work Sans', sans-serif;
   --font-family-secondary: 'Subjectivity-Bold', sans-serif;
 }
 
 /* Modo oscuro */
 [data-theme="dark"] {
-  --body-bg: #25262c;
-  --body-color: #f7f8f8;
+  --body-bg: #25262c;          /* Color de fondo (oscuro) */
+  --body-color: #f7f8f8;       /* Color de texto (claro) */
+  --secondary-bg: #393b41;     /* Color de fondo secundario (más oscuro) */
+  --secondary-color: #d4d8de;  /* Color secundario de texto (más claro) */
+  --secondary-border: #5c5f64;  /* Color de borde secundario (más claro) */
+  --accent-bg: #b1b7c0;        /* Color de fondo acentuado (más claro) */
+  --accent-color: #313438;
+  --logo-github: rgba(99, 99, 99, 0.466);
 }
 
 /* --- ESTILOS GENERALES --- */
