@@ -1,28 +1,36 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template,request, jsonify
 from flask_cors import CORS
 from lex import all_tokens
 from syntax import parser_for_statement
 
 app = Flask(__name__)
-CORS(app)  # Permite CORS para todas las rutas
+CORS(app)
 
-@app.route('/analyze', methods=['POST'])
-def analyze():
-    code = request.json['code']
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    tokens = []
+    syntax_errors = []
     
-    # Análisis léxico
-    tokens = all_tokens(code)
-    token_list = [{"token": t[0], "lexeme": str(t[1]), "line": t[2]} for t in tokens]
-    
-    # Análisis sintáctico
-    parser_for_statement(code)
-    from syntax import errors as syntax_errors
-    
-    return jsonify({
-        "tokens": token_list,
-        "errors": syntax_errors
-    })
+    if request.method == 'POST':
+        code = request.form.get('code', '')
+
+        if code.strip():
+            try:                
+                tokens = all_tokens(code)       # Análisis léxico
+                parser_for_statement(code)      # Análisis sintáctico
+
+                syntax_errors = parser_for_statement(code)
+
+            except Exception as e:
+                # En caso de un error crítico (no previsto), lo agregamos a la lista de errores
+                syntax_errors.append(f"Error crítico al analizar el código: {str(e)}")
+
+    # Renderizar la página con los resultados
+    return render_template(
+        'index.html',
+        tokens=tokens,
+        errors=syntax_errors
+    )
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
-
+    app.run(debug=True)
