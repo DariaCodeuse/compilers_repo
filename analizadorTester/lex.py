@@ -9,7 +9,7 @@ reserved = data["reserved"]
 # List of token names (Always required)
 tokens = [token for category in data.values() for token in category.values()]
 tokens += ["IDENTIFIER", "STRING", "NUMBER"]
-print(tokens)
+
 
 # Regular expression rules for simple tokens
 t_EQUALS   = r'='
@@ -60,10 +60,6 @@ for (int i = 1; i <= 5; i++) {
 }
 '''
 
-# Give the lexer some input
-lexer.input(data)
-
-
 # Tokenize
 def all_tokens(input):
     # Inicializar el número de línea en 1
@@ -75,7 +71,6 @@ def all_tokens(input):
         if not tok:
             break
         tokens.append((tok.type, tok.value, tok.lineno))
-        print(tok.type, tok.value,tok.lineno) # testeo only
     return tokens
 
 all_tokens(data)
