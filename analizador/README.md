@@ -1,7 +1,13 @@
 # Analizador Léxico y Sintáctico
-
-
 Este proyecto es un programa que realiza un análisis léxico y sintáctico de una estructura `for` dada. Actualmente, el programa analiza estructuras de bucles `for` en el siguiente formato:
+![syntax-error](https://github.com/user-attachments/assets/a1605919-6627-4bc2-b6d0-d32bdcccfaae)
+
+## Darkmode 
+![main-darkmode](https://github.com/user-attachments/assets/5a1c8305-3039-405e-9d6b-57011fae5aac)
+
+#Workning
+![working](https://github.com/user-attachments/assets/581cc24d-8f82-4cfc-8310-2755f3d536fa)
+
 
 ```java
 for (int i = 1; i <= 5; i++) {
