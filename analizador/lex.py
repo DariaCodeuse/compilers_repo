@@ -59,7 +59,14 @@ for (int i = 1; i <= 5; i++) {
     System.out.println ("El valor de la cifra es: " + i);
 }
 '''
-
+lexer.input(data)
+# Tokenize
+while True:
+    tok = lexer.token()
+    if not tok:
+        break      # No more input
+    print(tok.type, tok.value, tok.lineno, tok.lexpos)
+    
 # Tokenize
 def all_tokens(input):
     # Inicializar el número de línea en 1

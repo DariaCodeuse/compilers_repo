@@ -10,7 +10,8 @@ identificador = data["identificador"]
 
 # List of token names (Always required)
 tokens = [token for category in data.values() for token in category.values()]
-tokens += ["IDENTIFICADOR", "VARIABLE", "NUMERO", "CADENA"]
+tokens += ["IDENTIFICADOR", "VARIABLE", "CADENA"]
+print(tokens)
 
 variable = []
 
@@ -48,6 +49,19 @@ def t_IDENTIFICADOR(t):
     t.type = reservada.get(t.value, 'IDENTIFICADOR')
     return t
 
+def t_CADENA(t):
+    r'"[^"]*"'
+    return t
+
+# def t_VARIABLE(t):
+#     r'[a-zA-Z_][a-zA-Z0-9_]*'
+#     if t.value not in reservada and t.value not in identificador:
+#         t.type = 'VARIABLE'  # Marca como variable
+#         identificador[t.value] = t.value  # Registra la nueva variable
+#     else:
+#         t.type = reservada.get(t.value, 'IDENTIFICADOR')
+#     return t
+
 # Track line numbers
 def t_newline(t):
     r'\n+'
@@ -63,6 +77,7 @@ def t_error(t):
 # Build the lexer
 lexer = lex.lex()
 
+# SOLO PARA TESTEO
 data = '''
 programa suma(){
     int a,b,c;
