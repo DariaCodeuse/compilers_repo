@@ -26,24 +26,6 @@ t_ADICION = r'\+'
 t_IGUAL   = r'='
 
 # A regular expression rule with some action code
-def t_CADENA(t):
-    r'"[^"]*"'
-    return t
-
-def t_NUMERO(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
-
-def t_VARIABLE(t):
-    r'[a-zA-Z_][a-zA-Z0-9_]*'
-    if t.value not in reservada and t.value not in identificador:
-        t.type = 'VARIABLE'  # Marca como variable
-        identificador[t.value] = t.value  # Registra la nueva variable
-    else:
-        t.type = reservada.get(t.value, 'IDENTIFICADOR')
-    return t
-
 def t_IDENTIFICADOR(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = reservada.get(t.value, 'IDENTIFICADOR')
@@ -89,10 +71,22 @@ programa suma(){
 }
 '''
 
-lexer.input(data)
-# Tokenize
-while True:
-    tok = lexer.token()
-    if not tok:
-        break      # No more input
-    print(tok.type, tok.value, tok.lineno, tok.lexpos)
+# lexer.input(data)
+# # Tokenize
+# while True:
+#     tok = lexer.token()
+#     if not tok:
+#         break      # No more input
+#     print(tok.type, tok.value, tok.lineno, tok.lexpos)
+
+def all_tokens(input):
+    # Inicializar el número de línea en 1
+    lexer.lineno = 1
+    lexer.input(input)
+    tokens = []
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        tokens.append((tok.type, tok.value, tok.lineno))
+    return tokens
