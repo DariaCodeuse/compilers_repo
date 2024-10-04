@@ -1,40 +1,36 @@
 import ply.yacc as yacc
-from lex import tokens, lexer
+from lex import tokens
 
-errors = []
+# Definir la gramática
+def p_declaracion_variable(p):
+    '''declaracion : tipo lista_identificadores SEMICOLON
+                   | tipo EQUALS lista_identificadores SEMICOLON'''
+    print(f"Declaración de tipo '{p[1]}': {p[2]}")
 
-def p_for_statement(p):
-  '''for_statement : FOR LPAREN initialization SEMICOLON condition SEMICOLON update RPAREN LBRACE body RBRACE '''
-  if not errors:
-        print("Estructura del bucle 'for' correcta")
+def p_tipo(p):
+    '''tipo : INT
+             | FLOAT
+             | CHAR
+             | DOUBLE'''
+    p[0] = p[1]
 
-def p_initialization(p):
-  '''initialization : INT IDENTIFIER EQUALS NUMBER '''
-
-def p_condition(p):
-  '''condition : IDENTIFIER LESS_EQUAL NUMBER '''
-
-def p_update(p):
-  '''update : IDENTIFIER INCREMENT
-            | INCREMENT IDENTIFIER '''
-
-def p_body(p):
-  '''body : SYSTEM DOT OUT DOT PRINTLN LPAREN STRING PLUS IDENTIFIER RPAREN SEMICOLON '''
-
-# Error rule for syntax errors
-def p_error(p):
-    if p:
-        errors.append(f"Error de sintaxis en el token '{p.value}', línea {p.lineno}")
+def p_lista_identificadores(p):
+    '''lista_identificadores : IDENTIFIER
+                              | lista_identificadores COMMA IDENTIFIER'''
+    if len(p) == 2:
+        p[0] = [p[1]]  # Solo un identificador
     else:
-        errors.append("Error de sintaxis al final del archivo")
+        p[0] = p[1] + [p[3]]  # Añadir identificador a la lista
 
-# Build the parser
-parser = yacc.yacc(debug=False)
+# Otras reglas...
 
+# Crear el parser
+parser = yacc.yacc()
 
-def parser_for_statement(code):
-    global errors
-    errors.clear()  # Limpiar errores previos
-    lexer.lineno = 1
-    parser.parse(code, lexer=lexer)
-    return errors
+# Probar el parser
+codigo = """
+int a, b, c;
+float = x, y;
+"""
+
+parser.parse(codigo)
