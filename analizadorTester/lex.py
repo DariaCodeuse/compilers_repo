@@ -1,76 +1,50 @@
 import ply.lex as lex
-import json
 
-# Cargar el JSON
-with open('tokens.json') as f:
-    data = json.load(f)
-reserved = data["reserved"]
+# Lista de tokens
+tokens = (
+    'IDENTIFIER',
+    'INT',
+    'FLOAT',
+    'CHAR',
+    'DOUBLE',
+    'SEMICOLON',
+    'COMMA',
+    'EQUALS',
+)
 
-# List of token names (Always required)
-tokens = [token for category in data.values() for token in category.values()]
-tokens += ["IDENTIFIER", "STRING", "NUMBER"]
-
-
-# Regular expression rules for simple tokens
-t_EQUALS   = r'='
-t_PLUS    = r'\+'
-t_LESS_EQUAL   = r'<='
-t_INCREMENT  = r'\+\+'
-t_LPAREN  = r'\('
-t_RPAREN  = r'\)'
-t_LBRACE = r'\{'
-t_RBRACE = r'\}'
+# Definición de expresiones regulares para los tokens
+t_INT = r'int'
+t_FLOAT = r'float'
+t_CHAR = r'char'
+t_DOUBLE = r'double'
 t_SEMICOLON = r';'
-t_DOT = r'\.'
+t_COMMA = r','
+t_EQUALS = r'='
 
-# A regular expression rule with some action code
-def t_NUMBER(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
+# Identificador: debe comenzar con una letra o guion bajo y puede tener letras, números o guiones bajos
+t_IDENTIFIER = r'[a-zA-Z_][a-zA-Z0-9_]*'
 
-def t_STRING(t):
-    r'"[^"]*"'
-    return t
+# Ignorar espacios y saltos de línea
+t_ignore = ' \t\n'
 
-def t_IDENTIFIER(t):
-    r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = reserved.get(t.value, 'IDENTIFIER')
-    return t
+def t_error(p):
+    if p:
+        print(f"Error de sintaxis en el token '{p.value}'")
+    else:
+        print("Error de sintaxis en la entrada")
 
-# Track line numbers
-def t_newline(t):
-    r'\n+'
-    t.lexer.lineno += len(t.value)
-
-t_ignore  = ' \t'
-
-# Error handling rule
-def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
-    t.lexer.skip(1)
-
-# Build the lexer
+# Crear el lexer
 lexer = lex.lex()
 
-# Test it out
-data = '''
-for (int i = 1; i <= 5; i++) {
-    System.out.println ("El valor de la cifra es: " + i);
-}
-'''
+codigo = """
+int a, b, c;
+float = x, y;
+"""
 
+lexer.input(codigo)
 # Tokenize
-def all_tokens(input):
-    # Inicializar el número de línea en 1
-    lexer.lineno = 1
-    lexer.input(input)
-    tokens = []
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break
-        tokens.append((tok.type, tok.value, tok.lineno))
-    return tokens
-
-all_tokens(data)
+while True:
+    tok = lexer.token()
+    if not tok:
+        break      # No more input
+    print(tok.type, tok.value, tok.lineno, tok.lexpos)
