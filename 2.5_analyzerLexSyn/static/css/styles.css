@@ -1,0 +1,298 @@
+/* Fuentes */
+@font-face {
+  font-family: 'Subjectivity-Bold';
+  src: url('../fonts/Subjectivity-Bold.otf') format('opentype');
+}
+
+* {
+  box-sizing: border-box; /* Asegura que paddings y borders no afecten el tamaño total */
+  margin: 0;
+  padding: 0;
+}
+
+.work-sans-regular {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal; 
+}
+
+/* --- VARIABLES --- */
+/* Modo claro */
+:root {
+  --body-bg: #f7f8f8;
+  --body-color: #25262c;
+  --secondary-bg: #eeeef0;
+  --secondary-color: #737984;
+  --secondary-border: #b7bac2;
+  --accent-bg: #676c79;
+  --accent-color: #bebfc4;
+  --logo-github: rgba(156, 156, 156, 0.2);
+  --font-family-main: 'Work Sans', sans-serif;
+  --font-family-secondary: 'Subjectivity-Bold', sans-serif;
+}
+
+/* Modo oscuro */
+[data-theme="dark"] {
+  --body-bg: #25262c;          /* Color de fondo (oscuro) */
+  --body-color: #f7f8f8;       /* Color de texto (claro) */
+  --secondary-bg: #393b41;     /* Color de fondo secundario (más oscuro) */
+  --secondary-color: #d4d8de;  /* Color secundario de texto (más claro) */
+  --secondary-border: #5c5f64;  /* Color de borde secundario (más claro) */
+  --accent-bg: #b1b7c0;        /* Color de fondo acentuado (más claro) */
+  --accent-color: #313438;
+  --logo-github: rgba(99, 99, 99, 0.466);
+}
+
+/* --- ESTILOS GENERALES --- */
+body {
+  font-family: var(--font-family-main);
+  background-color: var(--body-bg);
+  color: var(--body-color);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  height: fit-content;
+  overflow-x: hidden;
+}
+
+/* 1. HEADER */
+header {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--body-bg);
+  padding:  20px;
+  border-bottom: 1px solid var(--secondary-border);
+}
+
+header h1 {
+  position: absolute;
+  left: 50%; 
+  transform: translateX(-50%);
+  color: var(--body-color);
+  font-family: var(--font-family-secondary);
+}
+
+.options {
+  margin-left: auto; 
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Github Link */
+.Btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  /* overflow: hidden; */
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.svgContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+  letter-spacing: 0.8px;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(156, 156, 156, 0.466);
+  position: relative; 
+  z-index: 2; 
+}
+
+.BG {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--body-color);
+  z-index: 1; 
+  border-radius: 10px;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.Btn:hover .BG {
+  transform: rotate(15deg); 
+  transform-origin: bottom;
+}
+
+.Btn:hover .svgContainer {
+  background-color: rgba(156, 156, 156, 0.2); 
+  backdrop-filter: blur(4px);
+}
+
+.main-data,
+.data-container,
+.buttons-box {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px;
+  gap: 15px;
+  background-color: var(--secondary-bg);
+}
+
+.data-container div {
+  width: 50%;
+  height: 300px;
+  margin: 5px;
+  padding: 20px;
+  display: flex;
+  background-color: var(--body-bg);
+  border-radius: 8px;
+  border: 1px solid var(--secondary-border);
+}
+
+.dt-input {
+  width: 100%;
+  height: 100%; 
+  padding: 0;
+  color: var(--accent-bg);
+  border-radius: 8px;
+  overflow: auto;
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.4);
+}
+
+textarea {
+  width: 100%;
+  background-color: var(--body-bg);
+  color: var(--accent-bg);
+  border: none; 
+  border-radius: 8px;
+  resize: none; 
+  font-family: var(--font-family-main);
+  font-size: 1rem;
+}
+
+textarea::placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--body-bg);
+  color: var(--accent-bg);
+  border: none; 
+  border-radius: 8px;
+  resize: none;
+}
+
+/* Seccioón de Botones */
+.buttons-box {
+  margin-bottom: 15px;
+  padding: 0;
+}
+.buttons-box div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 15px;
+  gap: 15px;
+}
+
+.analyze-button {
+  padding: 15px 20px;
+  border: none;
+  outline: none;
+  background-color: var(--body-color);
+  color: var(--body-bg);
+  border-radius: 7px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+}
+
+.analyze-button:hover {
+  transform: translateY(-3px);
+}
+/* Results container styles */
+.results-container {
+  display: flex;
+  justify-content: center; 
+  width: 100%;
+  padding: 20px;
+  background-color: #ddd;
+  min-height: 180px;
+  border-collapse: collapse;
+}
+
+.rc-main {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  max-height: 600px;
+  padding: 25px;
+  width: 70%;
+  margin: 15px 0;
+  background-color: var(--body-bg);
+  border-radius: 8px;
+  box-shadow: 5px 5px 8px var(--accent-color);
+}
+
+.results-container h3 {
+  margin: 10px;
+  text-align: center;
+  font-size: 1.7rem;
+}
+
+/* Nuevo contenedor solo para la tabla */
+.scrollable-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 500px;
+  width: 100%;
+  background-color: var(--body-bg);
+  border-radius: 2px;
+  border: 2px solid var(--secondary-bg);
+  overflow: auto; /* Solo la tabla tendrá scroll */
+}
+
+.rc-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: scroll;
+}
+
+.rc-table th,
+.rc-table td {
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--body-bg);
+}
+
+.rc-table th {
+  background-color: var(--body-color);
+  color: var(--secondary-bg);
+}
+
+.rc-table tr:nth-child(even) {
+  background-color: var(--accent-color);
+}
+
+
+/* Footer */
+footer {
+  width: 100%;
+  height: 50px; 
+  background-color: var(--secondary-bg);
+  color: var(--body-color);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
