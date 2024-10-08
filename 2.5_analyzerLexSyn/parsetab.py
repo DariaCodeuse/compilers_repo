@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ADICION CADENA COMA END IDENTIFICADOR IGUAL INT LBRACE LPAREN PRINT PROGRAMA RBRACE READ RPAREN SEMICOLON SUMA VARIABLEfuncion : PROGRAMA IDENTIFICADOR LPAREN RPAREN LBRACE estructura RBRACEestructura : variables entrada operacion impresion salidavariables : INT IDENTIFICADOR COMA IDENTIFICADOR COMA IDENTIFICADOR SEMICOLON entrada : lectura lecturalectura : READ IDENTIFICADOR SEMICOLONoperacion : IDENTIFICADOR IGUAL IDENTIFICADOR ADICION IDENTIFICADOR SEMICOLONimpresion : PRINT LPAREN CADENA RPARENsalida : END SEMICOLON'
+_lr_signature = 'ADICION CADENA COMA COMILLA END IDENTIFICADOR IGUAL INT LBRACE LPAREN PRINT PROGRAMA RBRACE READ RPAREN SEMICOLON VARIABLEfuncion : PROGRAMA IDENTIFICADOR LPAREN RPAREN LBRACE estructura RBRACEestructura : variables entrada operacion impresion salidavariables : INT VARIABLE COMA VARIABLE COMA VARIABLE SEMICOLON entrada : lectura lecturalectura : READ VARIABLE SEMICOLONoperacion : VARIABLE IGUAL VARIABLE ADICION VARIABLE SEMICOLONimpresion : PRINT LPAREN COMILLA CADENA CADENA CADENA COMILLA RPARENsalida : END SEMICOLON'
     
-_lr_action_items = {'PROGRAMA':([0,],[2,]),'$end':([1,10,],[0,-1,]),'IDENTIFICADOR':([2,9,11,13,17,19,22,23,29,32,],[3,14,16,18,-4,24,28,-5,33,35,]),'LPAREN':([3,21,],[4,27,]),'RPAREN':([4,31,],[5,34,]),'LBRACE':([5,],[6,]),'INT':([6,],[9,]),'RBRACE':([7,25,30,],[10,-2,-8,]),'READ':([8,12,23,36,],[13,13,-5,-3,]),'COMA':([14,24,],[19,29,]),'PRINT':([15,37,],[21,-6,]),'IGUAL':([16,],[22,]),'SEMICOLON':([18,26,33,35,],[23,30,36,37,]),'END':([20,34,],[26,-7,]),'CADENA':([27,],[31,]),'ADICION':([28,],[32,]),}
+_lr_action_items = {'PROGRAMA':([0,],[2,]),'$end':([1,10,],[0,-1,]),'IDENTIFICADOR':([2,],[3,]),'LPAREN':([3,21,],[4,27,]),'RPAREN':([4,40,],[5,41,]),'LBRACE':([5,],[6,]),'INT':([6,],[9,]),'RBRACE':([7,25,30,],[10,-2,-8,]),'READ':([8,12,23,36,],[13,13,-5,-3,]),'VARIABLE':([9,11,13,17,19,22,23,29,32,],[14,16,18,-4,24,28,-5,33,35,]),'COMA':([14,24,],[19,29,]),'PRINT':([15,38,],[21,-6,]),'IGUAL':([16,],[22,]),'SEMICOLON':([18,26,33,35,],[23,30,36,38,]),'END':([20,41,],[26,-7,]),'COMILLA':([27,39,],[31,40,]),'ADICION':([28,],[32,]),'CADENA':([31,34,37,],[34,37,39,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -27,12 +27,12 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> funcion","S'",1,None,None,None),
-  ('funcion -> PROGRAMA IDENTIFICADOR LPAREN RPAREN LBRACE estructura RBRACE','funcion',7,'p_funcion','syntax.py',8),
+  ('funcion -> PROGRAMA IDENTIFICADOR LPAREN RPAREN LBRACE estructura RBRACE','funcion',7,'p_funcion','syntax.py',10),
   ('estructura -> variables entrada operacion impresion salida','estructura',5,'p_estructura','syntax.py',13),
-  ('variables -> INT IDENTIFICADOR COMA IDENTIFICADOR COMA IDENTIFICADOR SEMICOLON','variables',7,'p_variables','syntax.py',17),
-  ('entrada -> lectura lectura','entrada',2,'p_entrada','syntax.py',21),
-  ('lectura -> READ IDENTIFICADOR SEMICOLON','lectura',3,'p_lectura','syntax.py',24),
-  ('operacion -> IDENTIFICADOR IGUAL IDENTIFICADOR ADICION IDENTIFICADOR SEMICOLON','operacion',6,'p_operacion','syntax.py',27),
-  ('impresion -> PRINT LPAREN CADENA RPAREN','impresion',4,'p_impresion','syntax.py',30),
-  ('salida -> END SEMICOLON','salida',2,'p_salida','syntax.py',33),
+  ('variables -> INT VARIABLE COMA VARIABLE COMA VARIABLE SEMICOLON','variables',7,'p_variables','syntax.py',18),
+  ('entrada -> lectura lectura','entrada',2,'p_entrada','syntax.py',23),
+  ('lectura -> READ VARIABLE SEMICOLON','lectura',3,'p_lectura','syntax.py',26),
+  ('operacion -> VARIABLE IGUAL VARIABLE ADICION VARIABLE SEMICOLON','operacion',6,'p_operacion','syntax.py',33),
+  ('impresion -> PRINT LPAREN COMILLA CADENA CADENA CADENA COMILLA RPAREN','impresion',8,'p_impresion','syntax.py',48),
+  ('salida -> END SEMICOLON','salida',2,'p_salida','syntax.py',51),
 ]

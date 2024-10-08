@@ -51,7 +51,7 @@ body {
   display: flex;
   flex-direction: column;
   align-content: center;
-  height: fit-content;
+  height: 100%;
   overflow-x: hidden;
 }
 
@@ -134,6 +134,79 @@ header h1 {
 .Btn:hover .svgContainer {
   background-color: rgba(156, 156, 156, 0.2); 
   backdrop-filter: blur(4px);
+}
+
+/* Darkmode activate*/
+/* From Uiverse.io by DawidMazurek4 */ 
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(0, 0, 0);
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 20px;
+  left: 0.3em;
+  bottom: 0.3em;
+  background-color: rgb(219, 198, 2);
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #000000;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #000000;
+}
+
+input:checked + .slider:before {
+  transform: translateX(1.5em);
+}
+
+.slider::after {
+  width: 20px;
+  height: 20px;
+  left: 20%;
+  top: 10%;
+  border-radius: 50%;
+  position: absolute;
+  content: "";
+  background-color: rgb(0, 0, 0);
+  transition: ease 0.4s;
+}
+
+input:checked + .slider::after {
+  left: 80%;
+  width: 0px;
+  height: 0px;
 }
 
 .main-data,
@@ -220,27 +293,37 @@ textarea::placeholder {
   transform: translateY(-3px);
 }
 /* Results container styles */
-.results-container {
+.results-container,
+.errors-container {
   display: flex;
   justify-content: center; 
   width: 100%;
-  padding: 20px;
-  background-color: #ddd;
+  padding: 15px;
+  background-color: var(--body-bg);
   min-height: 180px;
   border-collapse: collapse;
 }
 
-.rc-main {
+.rc-main,
+.error-boxecita {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   align-items:center;
   max-height: 600px;
   padding: 25px;
   width: 70%;
-  margin: 15px 0;
+  margin-top: 15px;
   background-color: var(--body-bg);
   border-radius: 8px;
   box-shadow: 5px 5px 8px var(--accent-color);
+}
+
+@media (max-width: 900px) {
+  /* Estilos para pantallas de teléfonos */
+  .rc-main {
+    width: 90%;
+  }
 }
 
 .results-container h3 {
@@ -252,8 +335,7 @@ textarea::placeholder {
 /* Nuevo contenedor solo para la tabla */
 .scrollable-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   max-height: 500px;
   width: 100%;
   background-color: var(--body-bg);
@@ -284,6 +366,64 @@ textarea::placeholder {
   background-color: var(--accent-color);
 }
 
+/* Caja de errores */
+.errors-container {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.error-boxecita {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background: var(--body-bg);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  /* position: relative; */
+}
+
+/* Borde rojo cuando hay errores */
+.error-border {
+  border-color: rgb(235, 178, 178);
+}
+
+/* Borde verde cuando es exitoso */
+.success-border {
+  border-color: rgb(195, 238, 195);
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 1rem;
+}
+
+/* Icono de error */
+.error-icon {
+  fill: #f44336; /* Rojo para el error */
+  stroke: #f44336;
+  width: 50px;
+}
+
+/* Icono de éxito */
+.success-icon {
+  fill: #4caf50; /* Verde para el éxito */
+  stroke: #4caf50;
+  width: 50px;
+}
+
+
+.message-text-container {
+  text-align: center;
+}
+
+.message-text {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
 /* Footer */
 footer {

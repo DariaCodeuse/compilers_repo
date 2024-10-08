@@ -1,0 +1,359 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> funcion
+Rule 1     funcion -> PROGRAMA IDENTIFICADOR LPAREN RPAREN LBRACE estructura RBRACE
+Rule 2     estructura -> variables entrada operacion impresion salida
+Rule 3     variables -> INT VARIABLE COMA VARIABLE COMA VARIABLE SEMICOLON
+Rule 4     entrada -> lectura lectura
+Rule 5     lectura -> READ VARIABLE SEMICOLON
+Rule 6     operacion -> VARIABLE IGUAL VARIABLE ADICION VARIABLE SEMICOLON
+Rule 7     impresion -> PRINT LPAREN COMILLA CADENA CADENA CADENA COMILLA RPAREN
+Rule 8     salida -> END SEMICOLON
+
+Terminals, with rules where they appear
+
+ADICION              : 6
+CADENA               : 7 7 7
+COMA                 : 3 3
+COMILLA              : 7 7
+END                  : 8
+IDENTIFICADOR        : 1
+IGUAL                : 6
+INT                  : 3
+LBRACE               : 1
+LPAREN               : 1 7
+PRINT                : 7
+PROGRAMA             : 1
+RBRACE               : 1
+READ                 : 5
+RPAREN               : 1 7
+SEMICOLON            : 3 5 6 8
+VARIABLE             : 3 3 3 5 6 6 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+entrada              : 2
+estructura           : 1
+funcion              : 0
+impresion            : 2
+lectura              : 4 4
+operacion            : 2
+salida               : 2
+variables            : 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . funcion
+    (1) funcion -> . PROGRAMA IDENTIFICADOR LPAREN RPAREN LBRACE estructura RBRACE
+
+    PROGRAMA        shift and go to state 2
+
+    funcion                        shift and go to state 1
+
+state 1
+
+    (0) S' -> funcion .
+
+
+
+state 2
+
+    (1) funcion -> PROGRAMA . IDENTIFICADOR LPAREN RPAREN LBRACE estructura RBRACE
+
+    IDENTIFICADOR   shift and go to state 3
+
+
+state 3
+
+    (1) funcion -> PROGRAMA IDENTIFICADOR . LPAREN RPAREN LBRACE estructura RBRACE
+
+    LPAREN          shift and go to state 4
+
+
+state 4
+
+    (1) funcion -> PROGRAMA IDENTIFICADOR LPAREN . RPAREN LBRACE estructura RBRACE
+
+    RPAREN          shift and go to state 5
+
+
+state 5
+
+    (1) funcion -> PROGRAMA IDENTIFICADOR LPAREN RPAREN . LBRACE estructura RBRACE
+
+    LBRACE          shift and go to state 6
+
+
+state 6
+
+    (1) funcion -> PROGRAMA IDENTIFICADOR LPAREN RPAREN LBRACE . estructura RBRACE
+    (2) estructura -> . variables entrada operacion impresion salida
+    (3) variables -> . INT VARIABLE COMA VARIABLE COMA VARIABLE SEMICOLON
+
+    INT             shift and go to state 9
+
+    estructura                     shift and go to state 7
+    variables                      shift and go to state 8
+
+state 7
+
+    (1) funcion -> PROGRAMA IDENTIFICADOR LPAREN RPAREN LBRACE estructura . RBRACE
+
+    RBRACE          shift and go to state 10
+
+
+state 8
+
+    (2) estructura -> variables . entrada operacion impresion salida
+    (4) entrada -> . lectura lectura
+    (5) lectura -> . READ VARIABLE SEMICOLON
+
+    READ            shift and go to state 13
+
+    entrada                        shift and go to state 11
+    lectura                        shift and go to state 12
+
+state 9
+
+    (3) variables -> INT . VARIABLE COMA VARIABLE COMA VARIABLE SEMICOLON
+
+    VARIABLE        shift and go to state 14
+
+
+state 10
+
+    (1) funcion -> PROGRAMA IDENTIFICADOR LPAREN RPAREN LBRACE estructura RBRACE .
+
+    $end            reduce using rule 1 (funcion -> PROGRAMA IDENTIFICADOR LPAREN RPAREN LBRACE estructura RBRACE .)
+
+
+state 11
+
+    (2) estructura -> variables entrada . operacion impresion salida
+    (6) operacion -> . VARIABLE IGUAL VARIABLE ADICION VARIABLE SEMICOLON
+
+    VARIABLE        shift and go to state 16
+
+    operacion                      shift and go to state 15
+
+state 12
+
+    (4) entrada -> lectura . lectura
+    (5) lectura -> . READ VARIABLE SEMICOLON
+
+    READ            shift and go to state 13
+
+    lectura                        shift and go to state 17
+
+state 13
+
+    (5) lectura -> READ . VARIABLE SEMICOLON
+
+    VARIABLE        shift and go to state 18
+
+
+state 14
+
+    (3) variables -> INT VARIABLE . COMA VARIABLE COMA VARIABLE SEMICOLON
+
+    COMA            shift and go to state 19
+
+
+state 15
+
+    (2) estructura -> variables entrada operacion . impresion salida
+    (7) impresion -> . PRINT LPAREN COMILLA CADENA CADENA CADENA COMILLA RPAREN
+
+    PRINT           shift and go to state 21
+
+    impresion                      shift and go to state 20
+
+state 16
+
+    (6) operacion -> VARIABLE . IGUAL VARIABLE ADICION VARIABLE SEMICOLON
+
+    IGUAL           shift and go to state 22
+
+
+state 17
+
+    (4) entrada -> lectura lectura .
+
+    VARIABLE        reduce using rule 4 (entrada -> lectura lectura .)
+
+
+state 18
+
+    (5) lectura -> READ VARIABLE . SEMICOLON
+
+    SEMICOLON       shift and go to state 23
+
+
+state 19
+
+    (3) variables -> INT VARIABLE COMA . VARIABLE COMA VARIABLE SEMICOLON
+
+    VARIABLE        shift and go to state 24
+
+
+state 20
+
+    (2) estructura -> variables entrada operacion impresion . salida
+    (8) salida -> . END SEMICOLON
+
+    END             shift and go to state 26
+
+    salida                         shift and go to state 25
+
+state 21
+
+    (7) impresion -> PRINT . LPAREN COMILLA CADENA CADENA CADENA COMILLA RPAREN
+
+    LPAREN          shift and go to state 27
+
+
+state 22
+
+    (6) operacion -> VARIABLE IGUAL . VARIABLE ADICION VARIABLE SEMICOLON
+
+    VARIABLE        shift and go to state 28
+
+
+state 23
+
+    (5) lectura -> READ VARIABLE SEMICOLON .
+
+    READ            reduce using rule 5 (lectura -> READ VARIABLE SEMICOLON .)
+    VARIABLE        reduce using rule 5 (lectura -> READ VARIABLE SEMICOLON .)
+
+
+state 24
+
+    (3) variables -> INT VARIABLE COMA VARIABLE . COMA VARIABLE SEMICOLON
+
+    COMA            shift and go to state 29
+
+
+state 25
+
+    (2) estructura -> variables entrada operacion impresion salida .
+
+    RBRACE          reduce using rule 2 (estructura -> variables entrada operacion impresion salida .)
+
+
+state 26
+
+    (8) salida -> END . SEMICOLON
+
+    SEMICOLON       shift and go to state 30
+
+
+state 27
+
+    (7) impresion -> PRINT LPAREN . COMILLA CADENA CADENA CADENA COMILLA RPAREN
+
+    COMILLA         shift and go to state 31
+
+
+state 28
+
+    (6) operacion -> VARIABLE IGUAL VARIABLE . ADICION VARIABLE SEMICOLON
+
+    ADICION         shift and go to state 32
+
+
+state 29
+
+    (3) variables -> INT VARIABLE COMA VARIABLE COMA . VARIABLE SEMICOLON
+
+    VARIABLE        shift and go to state 33
+
+
+state 30
+
+    (8) salida -> END SEMICOLON .
+
+    RBRACE          reduce using rule 8 (salida -> END SEMICOLON .)
+
+
+state 31
+
+    (7) impresion -> PRINT LPAREN COMILLA . CADENA CADENA CADENA COMILLA RPAREN
+
+    CADENA          shift and go to state 34
+
+
+state 32
+
+    (6) operacion -> VARIABLE IGUAL VARIABLE ADICION . VARIABLE SEMICOLON
+
+    VARIABLE        shift and go to state 35
+
+
+state 33
+
+    (3) variables -> INT VARIABLE COMA VARIABLE COMA VARIABLE . SEMICOLON
+
+    SEMICOLON       shift and go to state 36
+
+
+state 34
+
+    (7) impresion -> PRINT LPAREN COMILLA CADENA . CADENA CADENA COMILLA RPAREN
+
+    CADENA          shift and go to state 37
+
+
+state 35
+
+    (6) operacion -> VARIABLE IGUAL VARIABLE ADICION VARIABLE . SEMICOLON
+
+    SEMICOLON       shift and go to state 38
+
+
+state 36
+
+    (3) variables -> INT VARIABLE COMA VARIABLE COMA VARIABLE SEMICOLON .
+
+    READ            reduce using rule 3 (variables -> INT VARIABLE COMA VARIABLE COMA VARIABLE SEMICOLON .)
+
+
+state 37
+
+    (7) impresion -> PRINT LPAREN COMILLA CADENA CADENA . CADENA COMILLA RPAREN
+
+    CADENA          shift and go to state 39
+
+
+state 38
+
+    (6) operacion -> VARIABLE IGUAL VARIABLE ADICION VARIABLE SEMICOLON .
+
+    PRINT           reduce using rule 6 (operacion -> VARIABLE IGUAL VARIABLE ADICION VARIABLE SEMICOLON .)
+
+
+state 39
+
+    (7) impresion -> PRINT LPAREN COMILLA CADENA CADENA CADENA . COMILLA RPAREN
+
+    COMILLA         shift and go to state 40
+
+
+state 40
+
+    (7) impresion -> PRINT LPAREN COMILLA CADENA CADENA CADENA COMILLA . RPAREN
+
+    RPAREN          shift and go to state 41
+
+
+state 41
+
+    (7) impresion -> PRINT LPAREN COMILLA CADENA CADENA CADENA COMILLA RPAREN .
+
+    END             reduce using rule 7 (impresion -> PRINT LPAREN COMILLA CADENA CADENA CADENA COMILLA RPAREN .)
+

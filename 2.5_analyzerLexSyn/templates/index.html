@@ -57,9 +57,15 @@
         <table class="rc-table">
           <thead>
             <tr>
-              <th>Token</th>
-              <th>Lexema</th>
               <th>Linea</th>
+              <th>Token</th>
+              <th>Palabra Reservada</th>
+              <th>Identificador</th>
+              <th>Variable</th>
+              <th>Número</th>
+              <th>Cadena</th>
+              <th>Simbolo</th>
+              <th>Tipo</th>
             </tr>
           </thead>
           <tbody>
@@ -69,6 +75,12 @@
               <td>{{ token[0] }}</td>
               <td>{{ token[1] }}</td>
               <td>{{ token[2] }}</td>
+              <td>{{ token[3] }}</td>
+              <td>{{ token[4] }}</td>
+              <td>{{ token[5] }}</td>
+              <td>{{ token[6] }}</td>
+              <td>{{ token[7] }}</td>
+              <td>{{ token[8] }}</td>
             </tr>
             {% endfor %}
             {% else %}
@@ -79,7 +91,44 @@
           </tbody>
         </table>
       </div>
-    </div>  
+    </div>
+  </section>
+
+  <!-- Salida de Errores -->
+  <section class="errors-container">
+    <div class="error-boxecita {% if errors %}error-border{% else %}success-border{% endif %}">
+      <div class="icon-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" stroke-width="0" fill="currentColor"
+          stroke="currentColor" class="icon {% if errors %}error-icon{% else %}success-icon{% endif %}">
+          <!-- Icono cambia según errores -->
+          {% if errors %}
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm64 304a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm-8-240a40 40 0 0 0-80 0v160a40 40 0 0 0 80 0V112z">
+          </path>
+          {% else %}
+          <!-- Icono de éxito -->
+          <path
+            d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z">
+          </path>
+          {% endif %}
+        </svg>
+      </div>
+  
+      <!-- Mensaje y contenido de análisis -->
+      <div class="message-text-container">
+        {% if errors %}
+        <p class="message-text">Errores sintácticos encontrados:</p>
+        <ul>
+          {% for error in errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p class="message-text">No hay errores sintácticos.</p>
+        <p class="sub-text">El análisis ha sido exitoso.</p>
+        {% endif %}
+      </div>
+    </div>
   </section>
 
   <footer>
