@@ -3,17 +3,22 @@ import json
 
 # Cargar el JSON
 with open('tokens.json') as f:
-    data = json.load(f)
+    data = json.load(f)         # Para hacer tokens
+    dataTok = json.load(f)      # Para agregar variables y cadenas
 
+# Inicializar una lista de categorías (los diccionarios dentro de data)
+lista_categorias = []
+for nombre_diccionario in data:
+    lista_categorias.append(nombre_diccionario)
+
+# Inicializar el diccionario de conteo para cada categoría
+token_count = {categoria: [] for categoria in lista_categorias}
 reservada = data["reservada"]
 identificador = data["identificador"]
 
 # List of token names (Always required)
 tokens = [token for category in data.values() for token in category.values()]
-tokens += ["IDENTIFICADOR", "VARIABLE", "CADENA"]
-print(tokens)
-
-variable = []
+tokens += ["IDENTIFICADOR", "VARIABLE", "CADENA", "RESERVADA", "COMILLA"]
 
 # Regular expression rules for simple tokens
 t_LPAREN  = r'\('
@@ -31,8 +36,22 @@ def t_IDENTIFICADOR(t):
     t.type = reservada.get(t.value, 'IDENTIFICADOR')
     return t
 
-def t_CADENA(t):
-    r'"[^"]*"'
+# Identificadores
+def t_VARIABLE(t):
+    r'\w+'
+    if t.value in reservada.keys():
+        t.type = reservada[t.value]
+    elif len(t.value) > 1:
+        t.type = 'CADENA'
+    else:
+        t.type = 'VARIABLE'
+    r'\w+'
+    if t.value in reservada.keys():
+        t.type = reservada[t.value]
+    elif len(t.value) > 1:
+        t.type = 'CADENA'
+    else:
+        t.type = 'VARIABLE'
     return t
 
 # def t_VARIABLE(t):
@@ -48,8 +67,12 @@ def t_CADENA(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
-
+    
 t_ignore  = ' \t'
+
+def t_COMILLA_ignore(t):
+    r'"'
+    pass
 
 # Error handling rule
 def t_error(t):
