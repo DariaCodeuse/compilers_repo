@@ -2,6 +2,7 @@ import ply.yacc as yacc
 from lex import tokens, lexer
 
 errors = []
+succes = []
 
 def p_for_statement(p):
   '''for_statement : FOR LPAREN initialization SEMICOLON condition SEMICOLON update RPAREN LBRACE body RBRACE '''

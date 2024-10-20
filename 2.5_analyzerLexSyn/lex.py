@@ -109,3 +109,11 @@ def all_tokens(input):
     return tokens
 
 ### quieres que el data te sirva para identificar a que catagoria pertenece cada token
+'''
+using  System;
+namespace HelloWorld
+{
+    class Hello {
+    }
+}
+'''
