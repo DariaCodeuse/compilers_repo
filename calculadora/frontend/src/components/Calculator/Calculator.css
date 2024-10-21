@@ -1,0 +1,97 @@
+/* ------ CALCULATOR ------ */
+/* From Uiverse.io by emmanuelh-dev */ 
+.calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--black);
+  border: 1px solid var(--main-dark);
+  width: 324px;
+  height: 480px;
+  padding: 20px 15px;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0.4, 0.4);
+}
+
+.output {
+  background-color: var(--dark-grey);
+  height: 80px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 8px;
+  box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.result {
+  font-size: 20px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  justify-items: center
+}
+
+button {
+  border: none;
+  width: 68px;
+  height: 68px;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: var(--secondary-green-dark);
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+}
+
+button:hover {
+  background-color: var(--musg-green);
+}
+
+button:active {
+  background-color: #ccc;
+}
+
+.bg-main-dark {
+  background-color: var(--main-dark);
+}
+
+.bg-main-dark:hover {
+  background-color: var(--dark-grey);
+  color: white;
+}
+
+.bg-musg-green {
+  background-color: var(--musg-green);
+}
+
+.bg-musg-green:hover {
+  background-color: var(--dark-grey);
+  color: white;
+}
+
+.bg-pumpink {
+  background-color: var(--musg-orange);
+  font-weight: bold;
+}
+.bg-pumpink:hover {
+  background-color: var(--dark-wine);
+  color: white;
+}
+
+.bg-wine {
+  background-color: var(--dark-wine);
+  font-weight: bold;
+}
+
+.bg-wine:hover {
+  background-color: var(--musg-orange);
+  color: white;
+}
+
+.btn-tree {
+  background-color: var(--main-dark);
+  border: 2px solid var(--secondary-green-dark);
+}
