@@ -1,0 +1,19 @@
+/* ------ BODY ------ */
+.body {
+  grid-area: body;
+  padding: 20px;          /* Asegúrate de que el padding sea un valor definido */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;    /* Centra los elementos en el eje X y Y */
+}
+
+/* ------ BOX BODY ------ */
+.box-body {
+  display: flex;          
+  justify-content: center; 
+  align-items: center;     
+  gap: 20px;               
+  width: 100%;             
+  max-width: 1200px;       
+}
