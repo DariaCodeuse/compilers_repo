@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <title>Calculadora</title>
+</head>
+<body>
+    <div class="contenedor">
+        <div class="calculadora">
+            <form method="post">
+                <input type="text" id="code" name="code" value="{{ resultado }}" readonly>
+                <div class="buttons">
+                    <button type="button" onclick="appendToDisplay('(')">(</button>
+                    <button type="button" onclick="appendToDisplay(')')">)</button>
+                    <button type="button" class="clear" onclick="clearDisplay()">C</button>
+                    <button type="button" onclick="appendToDisplay('/')">/</button>
+                    <button type="button" onclick="appendToDisplay('7')">7</button>
+                    <button type="button" onclick="appendToDisplay('8')">8</button>
+                    <button type="button" onclick="appendToDisplay('9')">9</button>
+                    <button type="button" onclick="appendToDisplay('*')">*</button>
+                    <button type="button" onclick="appendToDisplay('4')">4</button>
+                    <button type="button" onclick="appendToDisplay('5')">5</button>
+                    <button type="button" onclick="appendToDisplay('6')">6</button>
+                    <button type="button" onclick="appendToDisplay('-')">-</button>
+                    <button type="button" onclick="appendToDisplay('1')">1</button>
+                    <button type="button" onclick="appendToDisplay('2')">2</button>
+                    <button type="button" onclick="appendToDisplay('3')">3</button>
+                    <button type="button" onclick="appendToDisplay('+')">+</button>
+                    <button type="button" onclick="appendToDisplay('0')" class="btn-zero">0</button>
+                    <button type="button" onclick="appendToDisplay('.')">.</button>
+                    <button type="submit" name="resultado" value="resultado">=</button>
+                    <!-- Botón para guardar el valor en memoria -->
+                    <button type="button" onclick="guardarMemoria()" class="btn-memory">M</button>
+                    <!-- Botón para recuperar el valor de la memoria -->
+                    <button type="button" onclick="recuperarMemoria()" class="btn-memory">Recuperar Memoria</button>
+                </div>
+            </form>
+        </div>
+        <div class="tabla">
+            {% if valor == 1 %}
+                <table>
+                    <tr>
+                        <th>Token</th>
+                        <th>Tipo</th>
+                    </tr>
+                    {% for token, tipo in tokens %}
+                    <tr>
+                        <td>{{token}}</td>
+                        <td>{{tipo}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p></p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // Función para agregar valores al display
+        function appendToDisplay(value) {
+            document.getElementById('code').value += value;
+        }
+    
+        // Función para limpiar el display
+        function clearDisplay() {
+            document.getElementById('code').value = '';
+        }
+    
+        // Función para guardar en memoria
+        function guardarMemoria() {
+            const resultado = document.getElementById('code').value;
+            localStorage.setItem('memoria', resultado);
+        }
+    
+        // Función para recuperar el valor de la memoria y concatenarlo al valor actual
+        function recuperarMemoria() {
+            const memoria = localStorage.getItem('memoria');
+            if (memoria) {
+                document.getElementById('code').value += memoria; // Concatenar memoria a lo que ya está en el input
+            } else {
+                alert('No hay valor guardado en la memoria.');
+            }
+        }
+    </script>
+    
+
+</body>
+</html>

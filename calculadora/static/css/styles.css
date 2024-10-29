@@ -1,0 +1,158 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --black: #0D0A0F;
+  --main-dark: #1C181D;
+  --dark-grey: #343434;
+  --secondary-green-dark: #36332E;
+  --dark-wine: #7D433D;
+  --musg-orange: #AB553D;
+  --musg-green: #7E7B68;
+  --secondary-musg-green: #908E77;
+  --secondary-cream: #D9D8CE;
+  --main-cream: #FBFBF8;
+
+  --button-bg-dark: var(--secondary-green-dark);
+  --button-clear-bg: var(--dark-wine);
+  --button-equal-bg: var(--musg-orange);
+  --display-bg: var(--dark-grey);
+  --button-hover: var(--musg-green);
+
+  color: var(--main-cream);
+  background-color: var(--main-dark);
+}
+
+body {
+  height: 100vh; /* Para asegurarnos de que el cuerpo ocupa toda la pantalla */
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  background-color: var(--main-dark);
+}
+
+.contenedor {
+  display: flex;
+  align-items: center; /* Alinea los hijos al centro verticalmente */
+  width: 60%; /* Ajusta el ancho del contenedor padre */
+  justify-content: space-around; /* Espacio entre los hijos */
+}
+
+form {
+  height: 100%;
+}
+
+.calculadora {
+  background-color: var(--black);
+  border: 1px solid var(--main-dark);
+  border-radius: 5px;
+  width: 350px;
+  margin: 0 15px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#code {
+    width: 94%;
+    height: 60px;
+    text-align: right;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--display-bg); /* Fondo oscuro para el display */
+    color: var(--main-cream);
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas para las filas */
+    gap: 10px;
+}
+
+button {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-bg-dark);
+    color: var(--main-cream);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+
+.clear {
+    background-color: var(--button-clear-bg); /* Botón "C" en color vino oscuro */
+}
+
+.clear:hover {
+    background-color: var(--musg-orange); /* Color naranja al pasar el mouse */
+}
+
+.btn-zero {
+    background-color: var(--main-dark); /* Botón "=" en color naranja */
+    grid-column: span 2; /* Ocupa dos espacios */
+}
+
+.btn-zero:hover {
+    background-color: var(--musg-green);
+}
+
+/* Botones de memoria */
+.btn-memory {
+    background-color: var(--main-dark); 
+    grid-column: span 2; /* Cada botón ocupa dos espacios en la fila */
+}
+
+.btn-memory:hover {
+    background-color: var(--button-hover);
+}
+
+.tabla {
+  box-shadow: 0 0 10px var(--main-dark);
+  width: 350px; /* Ancho fijo para la tabla */
+  height: 400px;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid var(--musg-green);
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--black); /* Color de fondo igual al de la calculadora */
+  color: var(--dark-wine);
+  font-weight: bold;
+  position: sticky; /* Hace que los encabezados sean pegajosos */
+  top: 0; /* Posición del encabezado en la parte superior */
+  z-index: 1; /* Asegura que el encabezado esté sobre las filas cuando se desplaza */
+}
+
+td {
+  background-color: var(--main-dark); /* Color de fondo claro para las celdas */
+}
+
+tr:nth-child(even) td {
+  background-color: var(--secondary-green-dark); /* Alterna el color de las filas */
+}
+
+tr:hover td {
+  background-color: var(--musg-green); /* Color de fondo al pasar el mouse por las filas */
+}
