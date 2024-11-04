@@ -33,7 +33,7 @@ def noAcentos(texto):
 
 # Función para reemplazar inicial "Ñ" con "X"
 def reemplazar_ñ_con_x(texto):
-    if texto[0].upper() == "Ñ":
+    if texto[0] == "Ñ":
         return "X" + texto[1:]
     return texto
 
@@ -48,7 +48,7 @@ def censura(palabra):
 
 # Obtener clave de estado
 def clvEstado(nombreEstado):
-    return claves_estados.get(nombreEstado.upper(), "Clave no encontrada")
+    return claves_estados.get(nombreEstado, "Clave no encontrada")
 
 # Obtener clave de sexo
 def clvSexo(sexo):
@@ -73,39 +73,37 @@ def primerNombre(nombres):
 def sigConsonante(palabra):
     palabra = noAcentos(palabra)  # Elimina acentos
     for letra in palabra[1:]:  # Empieza desde la segunda letra
-        if letra.upper() not in 'AEIOU':  # Si es consonante
+        if letra  not in 'AEIOU':  # Si es consonante
             return letra
     return 'X'
 
-def generatorCURP(n, pA, sA, d, m, a, s, std):
+def generatorCURP(nombre, primer_apellido, segundo_apellido, dia, mes, anio, sexo, estado):
     # Aplicación de reemplazo de "Ñ" y obtención de iniciales
-    pA = reemplazar_ñ_con_x(pA)
-    sA = reemplazar_ñ_con_x(sA)
-    n = reemplazar_ñ_con_x(n)
+    pA = reemplazar_ñ_con_x(primer_apellido)
+    sA = reemplazar_ñ_con_x(segundo_apellido)
+    nom = reemplazar_ñ_con_x(nombre)
 
     # Generación de las primeras 4 letras de la CURP
-    primerasCuatro = pA[0] + primera_vocal(pA) + sA[0] + primerNombre(n)
+    pCuatro = pA[0] + primera_vocal(pA) + sA[0] + primerNombre(nom)
 
     # Reemplazo de palabra antisonante en las primeras cuatro letras
-    if primerasCuatro in palabras_restringidas: primerasCuatro = censura(primerasCuatro)
+    if pCuatro in palabras_restringidas: pCuatro = censura(pCuatro)
 
     # Fecha de nacimiento en formato CURP
-    fNacimiento = a[2:] + m + d
+    fechaN = anio[2:] + mes + dia
 
     # Clave de sexo y estado
-    claveSexo = clvSexo(s)
-    claveEstado = clvEstado(std)
+    sexo = clvSexo(sexo)
+    estado = clvEstado(estado)
 
      # Siguientes consonantes
-    consonante_pApellido = sigConsonante(pA)
-    consonante_sApellido = sigConsonante(sA)
-    consonante_primer_nombre = sigConsonante(n)
+    consoPA = sigConsonante(pA)
+    consoSA = sigConsonante(sA)
+    consoPN = sigConsonante(nom)
     
     # Construcción final de CURP (sin homoclave)
-    curp = primerasCuatro + fNacimiento + claveSexo + claveEstado + consonante_pApellido + consonante_sApellido + consonante_primer_nombre + "00"
+    curp = pCuatro + fechaN + sexo + estado + consoPA + consoSA + consoPN + "00"
 
     return curp
     
-
-# TESTEEER
-print(generatorCURP(nombres,pApellido,sApellido,diaN,mesN,añoN,sexo,stdo))
+# print(generatorCURP(nombres,pApellido,sApellido,diaN,mesN,añoN,sexo,stdo))
