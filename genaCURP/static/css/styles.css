@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f9;
+}
+h1 {
+  color: #333;
+}
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+input[type="text"], input[type="date"], select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+}
+button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #555;
+}
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+.success-message {
+  color: rgb(14, 77, 30);
+  font-weight: bold;
+}
+.result {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #333;
+}

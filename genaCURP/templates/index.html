@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de CURP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Generador de CURP</h1>
+      
+    <form method="post" action="/">
+        <label for="nombre">Nombre(s):</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="primer_apellido">Primer Apellido:</label>
+        <input type="text" id="primer_apellido" name="primer_apellido" required>
+
+        <label for="segundo_apellido">Segundo Apellido:</label>
+        <input type="text" id="segundo_apellido" name="segundo_apellido" required>
+
+        <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" min="1900" max="2024" required>
+
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo" required>
+            <option value="" disabled selected>Selecciona tu sexo</option>
+            <option value="HOMBRE">Hombre</option>
+            <option value="MUJER">Mujer</option>
+        </select>
+
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado" required>
+          <option value="" disabled selected>Selecciona tu estado</option>
+          {% for estado in estados %}
+              <option value="{{ estado }}">{{ estado }}</option>
+          {% endfor %}
+        </select>
+
+        <button type="submit">Genera tu CURP</button>
+    </form>
+
+    {% if curp %}
+        <div class="result">
+            <h2>CURP Generada</h2>
+            <p>Tu CURP es: <strong>{{ curp }}</strong></p>
+        </div>
+    {% endif %}
+
+    {% if mensaje_error %}
+        <p class="error-message">{{ mensaje_error }}</p>
+    {% endif %}
+
+    {% if mensaje_exito %}
+    <p class="success-message">{{ mensaje_exito }}</p>
+    {% endif %}
+
+</body>
+</html>
